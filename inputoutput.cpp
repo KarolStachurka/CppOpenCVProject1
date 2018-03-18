@@ -139,3 +139,30 @@ int InputOutput::getNewModelLabel()
     file.close();
     return label;
 }
+void InputOutput::removeModelFromFacesDatabase(string filename, string name, char separator)
+{
+    ifstream file(filename.c_str(), ifstream::in);
+    ofstream newFile("backup.txt",ofstream::out);
+    if (!file || !newFile)
+    {
+        return;
+    }
+    string line, path,label, modelName;
+    while (getline(file, line))
+    {
+        stringstream liness(line);
+        getline(liness, path, separator);
+        getline(liness, label,separator);
+        getline(liness,modelName);
+        if(modelName != name)
+            newFile << line << endl;
+        else
+            remove(path.c_str());
+    }
+    file.close();
+    newFile.close();
+    string dirPath = "facesDatabase/" + name;
+    remove(dirPath.c_str());
+    remove(filename.c_str());
+    rename("backup.txt",filename.c_str());
+}

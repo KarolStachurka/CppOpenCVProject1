@@ -83,15 +83,19 @@ Mat Camera::takeModelFacePicture()
     openedCamera >> frame;
     InputOutput io;
     CascadeClassifier classifier = io.loadFaceCascade(FRONTAL_FACE_CASCADE);
+    CascadeClassifier classifier2 = io.loadFaceCascade(PROFILE_FACE_CASCADE);
     FaceDetector faceDetection(frame,classifier);
+    faceDetection.setProfileCascade(classifier2);
+    faceDetection.setDetectedFaces();
+    faceDetection.setFrameWithFacesDetected();
     vector<Rect> faces = faceDetection.getDetectedFaces();
     if(faces.size() == 1)
     {
         Rect rect( faces[0].x, faces[0].y, faces[0].width, faces[0].height);
         frame = frame(rect);
-        cvtColor( frame, frame, CV_BGR2GRAY );
-        resize( frame, frame, Size(200,200));
     }
+    cvtColor( frame, frame, CV_BGR2GRAY );
+    resize( frame, frame, Size(200,200));
     return frame;
 }
 Mat Camera::takePicture()

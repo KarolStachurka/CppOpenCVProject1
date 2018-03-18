@@ -69,7 +69,7 @@
       <widget class="QLineEdit" name="newFaceModelName"/>
      </item>
      <item>
-      <widget class="QPushButton" name="pushButton">
+      <widget class="QPushButton" name="removeModelButton">
        <property name="text">
         <string>Remove existing face model</string>
        </property>
@@ -89,7 +89,7 @@
       </widget>
      </item>
      <item>
-      <widget class="QLineEdit" name="lineEdit"/>
+      <widget class="QLineEdit" name="modelToRemoveName"/>
      </item>
      <item>
       <widget class="QPushButton" name="takePictureButton">

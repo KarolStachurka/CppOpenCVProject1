@@ -9,6 +9,8 @@
 #include "opencv2/face.hpp"
 #include "opencv2/core.hpp"
 #include "camera.h"
+#include <cstdio>
+#include <stdio.h>
 #include <fstream>
 #include <sstream>
 #include <sys/types.h>
@@ -28,6 +30,7 @@ public:
     CascadeClassifier loadFaceCascade(string filepath);
     void generateInput(string modelName,int label);
     void generateDirectory(string fileName);
+    void removeModelFromFacesDatabase(string filename, string name, char separator);
     void writeToCSVfile(string data);
     int getNewModelLabel();
     map<int,string> getModelNamesFromCSVfile();

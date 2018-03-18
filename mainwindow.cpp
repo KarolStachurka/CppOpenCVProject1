@@ -48,3 +48,14 @@ void MainWindow::on_addModelButton_clicked()
     io.generateInput(modelName,label);
     ui->newFaceModelName->clear();
 }
+
+void MainWindow::on_removeModelButton_clicked()
+{
+    InputOutput io;
+    QString qModelName =ui->modelToRemoveName->text();
+    string modelName = qModelName.toStdString();
+    if(qModelName.isEmpty())
+        return;
+    io.removeModelFromFacesDatabase("faces.csv",modelName,';');
+    ui->modelToRemoveName->clear();
+}

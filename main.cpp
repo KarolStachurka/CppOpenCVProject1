@@ -1,7 +1,5 @@
 #include "mainwindow.h"
 #include <QApplication>
-#include <QImage>
-
 int main(int argc, char *argv[])
 {
     try{
@@ -14,5 +12,4 @@ int main(int argc, char *argv[])
     {
         cerr << e.what();
     }
-
 }
