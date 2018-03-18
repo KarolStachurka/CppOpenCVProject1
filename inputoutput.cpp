@@ -166,3 +166,12 @@ void InputOutput::removeModelFromFacesDatabase(string filename, string name, cha
     remove(filename.c_str());
     rename("backup.txt",filename.c_str());
 }
+void InputOutput::saveFrame()
+{
+    generateDirectory("pictures");
+    Camera camera;
+    camera.setCameraOn();
+    Mat frame = camera.takePicture();
+    string path = "pictures/xd.png";
+    imwrite(path,frame);
+}

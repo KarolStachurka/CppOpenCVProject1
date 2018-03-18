@@ -59,3 +59,9 @@ void MainWindow::on_removeModelButton_clicked()
     io.removeModelFromFacesDatabase("faces.csv",modelName,';');
     ui->modelToRemoveName->clear();
 }
+
+void MainWindow::on_takePictureButton_clicked()
+{
+    InputOutput io;
+    io.saveFrame();
+}

@@ -62,9 +62,9 @@ void FaceDetector::setDetectedFaces()
     vector<Rect> helper;
     cvtColor( frameWithoutFacesDetected, frame_gray, CV_BGR2GRAY );
     equalizeHist( frame_gray, frame_gray );
-    faceCascade.detectMultiScale( frame_gray, helper, 1.2, 3, 0|CV_HAAR_SCALE_IMAGE, Size(60, 60) );
+    faceCascade.detectMultiScale( frame_gray, helper, 1.3, 4, 0|CV_HAAR_SCALE_IMAGE, Size(60, 60) );
     detectedFaces.insert(detectedFaces.end(),helper.begin(),helper.end());
-    profileCascade.detectMultiScale( frame_gray, helper, 1.2, 3, 0|CV_HAAR_SCALE_IMAGE, Size(60, 60) );
+    profileCascade.detectMultiScale( frame_gray, helper, 1.3, 4, 0|CV_HAAR_SCALE_IMAGE, Size(60, 60) );
     for( size_t i = 0; i < helper.size(); i++ )
       {
         for( size_t j = 0; j < detectedFaces.size(); j++ )
@@ -77,7 +77,7 @@ void FaceDetector::setDetectedFaces()
        }
     detectedFaces.insert(detectedFaces.end(),helper.begin(),helper.end());
     flip(frame_gray,mirrored,1);
-    profileCascade.detectMultiScale( mirrored, helper, 1.2, 3, 0|CV_HAAR_SCALE_IMAGE, Size(60, 60) );
+    profileCascade.detectMultiScale( mirrored, helper, 1.3, 4, 0|CV_HAAR_SCALE_IMAGE, Size(60, 60) );
     for( size_t i = 0; i < helper.size(); i++ )
       {
         helper[i].x = mirrored.rows - helper[i].x;
@@ -124,7 +124,6 @@ Mat FaceDetector::recognizeFace(Mat frame)
         Mat face = gray(face_i);
         Mat face_resized;
         resize(face, face_resized, Size(200,200), 1.0, 1.0, INTER_CUBIC);
-
         int prediction = -1;
         double confidence;
         model->predict(face_resized,prediction,confidence);

@@ -29,6 +29,8 @@ private slots:
 
     void on_removeModelButton_clicked();
 
+    void on_takePictureButton_clicked();
+
 private:
     Ui::MainWindow *ui;
     Camera camera;

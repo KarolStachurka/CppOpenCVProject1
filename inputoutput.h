@@ -17,6 +17,8 @@
 #include <sys/stat.h>
 #include <chrono>
 #include <thread>
+#include <ctime>
+#include <ratio>
 
 using namespace std;
 using namespace cv;
@@ -32,6 +34,7 @@ public:
     void generateDirectory(string fileName);
     void removeModelFromFacesDatabase(string filename, string name, char separator);
     void writeToCSVfile(string data);
+    void saveFrame();
     int getNewModelLabel();
     map<int,string> getModelNamesFromCSVfile();
 };
